@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View the treasures and chronicles of Captain Jack Sparrow in our exclusive pirate gallery.">
+  <title>The Gallery | Jack Sparrow's Pirate Chronicles</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chatbot.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body style="padding-top: 100px;">
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-icon"></div>
+    <h2 class="pirate-font">Opening the Chest...</h2>
+  </div>
+
+  <nav id="main-nav" class="scrolled">
+    <h1 class="pirate-font">The Gallery</h1>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="characters.html">Characters</a></li>
+      <li><a href="store.html">Store</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-nav-action" onclick="logout()">Abandon Ship</button>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <section class="gallery-hero">
+    <h2 class="pirate-font" id="gallery-title">Pirate Chronicles</h2>
+    <p id="gallery-subtitle">A collection of captured moments from the legendary life of the world's most elusive pirate captain.</p>
+    <div class="gold-divider"></div>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-masonry" id="galleryGrid">
+    <div class="gallery-item" data-index="0" data-caption="The Black Pearl sets sail"><img src="assets/gallery1.jpeg" alt="Pirate Chronicle 1"><div class="gallery-overlay"><span class="gallery-caption">The Black Pearl sets sail</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="1" data-caption="Captain at the helm"><img src="assets/gallery2.jpeg" alt="Pirate Chronicle 2"><div class="gallery-overlay"><span class="gallery-caption">Captain at the helm</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="2" data-caption="Seas of adventure"><img src="assets/gellery3.jpeg" alt="Pirate Chronicle 3"><div class="gallery-overlay"><span class="gallery-caption">Seas of adventure</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="3" data-caption="The Curse of the Pearl"><img src="assets/gallery4.jpeg" alt="Pirate Chronicle 4"><div class="gallery-overlay"><span class="gallery-caption">The Curse of the Pearl</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="4" data-caption="Davy Jones' Locker"><img src="assets/gallery5.jpeg" alt="Pirate Chronicle 5"><div class="gallery-overlay"><span class="gallery-caption">Davy Jones' Locker</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="5" data-caption="Gold and glory"><img src="assets/gallery6.jpeg" alt="Pirate Chronicle 6"><div class="gallery-overlay"><span class="gallery-caption">Gold and glory</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="6" data-caption="The compass never lies"><img src="assets/gallery7.jpeg" alt="Pirate Chronicle 7"><div class="gallery-overlay"><span class="gallery-caption">The compass never lies</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="7" data-caption="World's End"><img src="assets/gallery8.jpeg" alt="Pirate Chronicle 8"><div class="gallery-overlay"><span class="gallery-caption">World's End</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="8" data-caption="Stranger Tides"><img src="assets/gallery9.jpeg" alt="Pirate Chronicle 9"><div class="gallery-overlay"><span class="gallery-caption">Stranger Tides</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="9" data-caption="Ghost ship rising"><img src="assets/gallery10.jpeg" alt="Pirate Chronicle 10"><div class="gallery-overlay"><span class="gallery-caption">Ghost ship rising</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="10" data-caption="The legend lives on"><img src="assets/gallery11.jpeg" alt="Pirate Chronicle 11"><div class="gallery-overlay"><span class="gallery-caption">The legend lives on</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="11" data-caption="Dead Men Tell No Tales"><img src="assets/gallery12.jpeg" alt="Pirate Chronicle 12"><div class="gallery-overlay"><span class="gallery-caption">Dead Men Tell No Tales</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="12" data-caption="Into the horizon"><img src="assets/gallery13.jpeg" alt="Pirate Chronicle 13"><div class="gallery-overlay"><span class="gallery-caption">Into the horizon</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="13" data-caption="Sword of the seas"><img src="assets/gallery14.jpeg" alt="Pirate Chronicle 14"><div class="gallery-overlay"><span class="gallery-caption">Sword of the seas</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="14" data-caption="Brethren Court"><img src="assets/gallery15.jpeg" alt="Pirate Chronicle 15"><div class="gallery-overlay"><span class="gallery-caption">Brethren Court</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="15" data-caption="The Fountain of Youth"><img src="assets/gallery16.jpeg" alt="Pirate Chronicle 16"><div class="gallery-overlay"><span class="gallery-caption">The Fountain of Youth</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="16" data-caption="Pirate Lord"><img src="assets/gallery17.jpeg" alt="Pirate Chronicle 17"><div class="gallery-overlay"><span class="gallery-caption">Pirate Lord</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="17" data-caption="Caribbean winds"><img src="assets/gallery18.jpeg" alt="Pirate Chronicle 18"><div class="gallery-overlay"><span class="gallery-caption">Caribbean winds</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="18" data-caption="The Black Spot"><img src="assets/gallery19.jpeg" alt="Pirate Chronicle 19"><div class="gallery-overlay"><span class="gallery-caption">The Black Spot</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="19" data-caption="Kraken attack"><img src="assets/gallery20.jpeg" alt="Pirate Chronicle 20"><div class="gallery-overlay"><span class="gallery-caption">Kraken attack</span><span class="gallery-icon">&#128269;</span></div></div>
+    <div class="gallery-item" data-index="20" data-caption="Savvy?"><img src="assets/gallery21.jpeg" alt="Pirate Chronicle 21"><div class="gallery-overlay"><span class="gallery-caption">Savvy?</span><span class="gallery-icon">&#128269;</span></div></div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lb-close" onclick="closeLightboxBtn()">&#10005;</button>
+    <button class="lb-prev" onclick="lbPrev(event)">&#10094;</button>
+    <div class="lb-content">
+      <img id="lb-img" src="" alt="">
+      <p id="lb-caption" class="lb-caption"></p>
+      <span id="lb-counter" class="lb-counter"></span>
+    </div>
+    <button class="lb-next" onclick="lbNext(event)">&#10095;</button>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2 class="pirate-font">Captain Jack Sparrow</h2>
+        <p>Sailing the Seven Seas since 1700. A university web development assignment inspired by the world's greatest pirate.</p>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" class="social-btn" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:jacksparrow@blackpearl.com" class="social-btn" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="tel:+94711234567" class="social-btn" aria-label="Phone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">&#9758; Home</a></li>
+          <li><a href="about.html">&#9758; The Captain</a></li>
+          <li><a href="movies.html">&#9758; Movies</a></li>
+          <li><a href="characters.html">&#9758; Characters</a></li>
+          <li><a href="store.html">&#9758; Store</a></li>
+          <li><a href="gallery.html">&#9758; Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Contact Us</h4>
+        <ul class="footer-contact-list">
+          <li><span class="contact-icon">&#128222;</span><a href="tel:+94711234567">+94 71 123 4567</a></li>
+          <li><span class="contact-icon">&#128140;</span><a href="mailto:jacksparrow@blackpearl.com">jacksparrow@blackpearl.com</a></li>
+          <li><span class="contact-icon">&#128205;</span><span>Port Royal, Caribbean Sea</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Follow the Legend</h4>
+        <ul class="footer-list">
+          <li><a href="https://facebook.com" target="_blank">&#128283; Facebook</a></li>
+          <li><a href="https://instagram.com" target="_blank">&#128247; Instagram</a></li>
+          <li><a href="mailto:jacksparrow@blackpearl.com">&#9993; Email Us</a></li>
+        </ul>
+        <div class="footer-quote">"Not all treasure is silver and gold, mate."</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Captain Jack Sparrow Fan Site &mdash; A University Web Development Assignment</span>
+      <span class="footer-bottom-links">
+        <a href="index.html">Home</a> &bull;
+        <a href="about.html">About</a> &bull;
+        <a href="movies.html">Movies</a> &bull;
+        <a href="gallery.html">Gallery</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Staggered animation on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(40px) scale(0.95)';
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0) scale(1)';
+        }, 100 + i * 80);
+      });
+    });
+
+    // Lightbox
+    const items = document.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        currentIndex = parseInt(item.dataset.index);
+        openLightbox(currentIndex);
+      });
+    });
+
+    function openLightbox(idx) {
+      const item = document.querySelector(`.gallery-item[data-index="${idx}"]`);
+      if (!item) return;
+      const img = item.querySelector('img');
+      document.getElementById('lb-img').src = img.src;
+      document.getElementById('lb-caption').textContent = item.dataset.caption || '';
+      document.getElementById('lb-counter').textContent = (idx + 1) + ' / ' + items.length;
+      const lb = document.getElementById('lightbox');
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e.target.id === 'lightbox') {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeLightboxBtn() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function lbNext(e) {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % items.length;
+      openLightbox(currentIndex);
+    }
+
+    function lbPrev(e) {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      openLightbox(currentIndex);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      const lb = document.getElementById('lightbox');
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % items.length; openLightbox(currentIndex); }
+      if (e.key === 'ArrowLeft')  { currentIndex = (currentIndex - 1 + items.length) % items.length; openLightbox(currentIndex); }
+      if (e.key === 'Escape') closeLightboxBtn();
+    });
+  </script>
+  <script src="chatbot.js"></script>
+  <script src="premium-animations.js"></script>
+</body>
+</html>

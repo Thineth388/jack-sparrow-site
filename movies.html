@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Explore the full cinematic journey of Captain Jack Sparrow through the Pirates of the Caribbean film series.">
+  <title>The Movies | Pirates of the Caribbean Saga</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chatbot.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body style="padding-top: 100px;">
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-icon"></div>
+    <h2 class="pirate-font">Gathering the Crew...</h2>
+  </div>
+
+  <nav id="main-nav" class="scrolled">
+    <h1 class="pirate-font">The Movies</h1>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="movies.html" class="active">Movies</a></li>
+      <li><a href="characters.html">Characters</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-nav-action" onclick="logout()">Abandon Ship</button>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOVIES HERO -->
+  <div class="movies-hero reveal">
+    <h2 class="pirate-font">The Legendary Voyages</h2>
+    <p>Five epic cinematic adventures across the Seven Seas. Hover over a film to uncover its secrets.</p>
+    <div class="gold-divider"></div>
+  </div>
+
+  <section class="movie-grid">
+
+    <!-- MOVIE 1 -->
+    <div class="movie-card reveal" id="mc1">
+      <div class="mc-badge">2003</div>
+      <img src="assets/movie1.jpg" alt="The Curse of the Black Pearl" class="movie-img">
+      <div class="mc-panel">
+        <div class="mc-title-row">
+          <h3 class="pirate-font">The Curse of the Black Pearl</h3>
+          <div class="mc-rating">&#11088; 8.1</div>
+        </div>
+        <div class="mc-meta">
+          <span class="mc-tag">Adventure</span>
+          <span class="mc-tag">Action</span>
+          <span class="mc-tag">Fantasy</span>
+        </div>
+        <div class="mc-details">
+          <span>&#127916; Gore Verbinski</span>
+          <span>&#9201; 143 min</span>
+          <span>&#127482;&#127480; PG-13</span>
+        </div>
+        <p class="mc-synopsis">Captain Jack Sparrow races to reclaim his beloved ship, the Black Pearl, from his mutinous former first mate Hector Barbossa, who has cursed him and his crew to be undead unless a blood offering is made.</p>
+        <a href="https://www.youtube.com/watch?v=naQr0uTrH_s" target="_blank" class="mc-trailer-btn">&#9654; Watch Trailer</a>
+      </div>
+    </div>
+
+    <!-- MOVIE 2 -->
+    <div class="movie-card reveal" id="mc2">
+      <div class="mc-badge">2006</div>
+      <img src="assets/movie2.jpg" alt="Dead Man's Chest" class="movie-img">
+      <div class="mc-panel">
+        <div class="mc-title-row">
+          <h3 class="pirate-font">Dead Man's Chest</h3>
+          <div class="mc-rating">&#11088; 7.3</div>
+        </div>
+        <div class="mc-meta">
+          <span class="mc-tag">Adventure</span>
+          <span class="mc-tag">Action</span>
+          <span class="mc-tag">Fantasy</span>
+        </div>
+        <div class="mc-details">
+          <span>&#127916; Gore Verbinski</span>
+          <span>&#9201; 151 min</span>
+          <span>&#127482;&#127480; PG-13</span>
+        </div>
+        <p class="mc-synopsis">Jack Sparrow races to recover the heart of Davy Jones to avoid enslaving his soul to Jones' Flying Dutchman, as his friends Will Turner and Elizabeth Swann arrive and sea monsters threaten.</p>
+        <a href="https://www.youtube.com/watch?v=EBLRyUkPGjQ" target="_blank" class="mc-trailer-btn">&#9654; Watch Trailer</a>
+      </div>
+    </div>
+
+    <!-- MOVIE 3 -->
+    <div class="movie-card reveal" id="mc3">
+      <div class="mc-badge">2007</div>
+      <img src="assets/movie3.jpg" alt="At World's End" class="movie-img">
+      <div class="mc-panel">
+        <div class="mc-title-row">
+          <h3 class="pirate-font">At World's End</h3>
+          <div class="mc-rating">&#11088; 7.1</div>
+        </div>
+        <div class="mc-meta">
+          <span class="mc-tag">Adventure</span>
+          <span class="mc-tag">Action</span>
+          <span class="mc-tag">Fantasy</span>
+        </div>
+        <div class="mc-details">
+          <span>&#127916; Gore Verbinski</span>
+          <span>&#9201; 169 min</span>
+          <span>&#127482;&#127480; PG-13</span>
+        </div>
+        <p class="mc-synopsis">The Brethren Court of pirates must unite to fight Lord Cutler Beckett and the East India Trading Company, while rescuing Jack from Davy Jones' Locker at the edge of the world.</p>
+        <a href="https://www.youtube.com/watch?v=HKSZtp_OGHY" target="_blank" class="mc-trailer-btn">&#9654; Watch Trailer</a>
+      </div>
+    </div>
+
+    <!-- MOVIE 4 -->
+    <div class="movie-card reveal" id="mc4">
+      <div class="mc-badge">2011</div>
+      <img src="assets/movie4.jpg" alt="On Stranger Tides" class="movie-img">
+      <div class="mc-panel">
+        <div class="mc-title-row">
+          <h3 class="pirate-font">On Stranger Tides</h3>
+          <div class="mc-rating">&#11088; 6.4</div>
+        </div>
+        <div class="mc-meta">
+          <span class="mc-tag">Adventure</span>
+          <span class="mc-tag">Action</span>
+          <span class="mc-tag">Fantasy</span>
+        </div>
+        <div class="mc-details">
+          <span>&#127916; Rob Marshall</span>
+          <span>&#9201; 136 min</span>
+          <span>&#127482;&#127480; PG-13</span>
+        </div>
+        <p class="mc-synopsis">Jack Sparrow and a formidable female captain Angelica are thrown aboard the Queen Anne's Revenge, the ship of the legendary pirate Blackbeard, on a quest to find the Fountain of Youth.</p>
+        <a href="https://www.youtube.com/watch?v=umqiHWMOWmY" target="_blank" class="mc-trailer-btn">&#9654; Watch Trailer</a>
+      </div>
+    </div>
+
+    <!-- MOVIE 5 -->
+    <div class="movie-card reveal" id="mc5">
+      <div class="mc-badge">2017</div>
+      <img src="assets/movie5.jpg" alt="Dead Men Tell No Tales" class="movie-img">
+      <div class="mc-panel">
+        <div class="mc-title-row">
+          <h3 class="pirate-font">Dead Men Tell No Tales</h3>
+          <div class="mc-rating">&#11088; 6.5</div>
+        </div>
+        <div class="mc-meta">
+          <span class="mc-tag">Adventure</span>
+          <span class="mc-tag">Action</span>
+          <span class="mc-tag">Fantasy</span>
+        </div>
+        <div class="mc-details">
+          <span>&#127916; Ronning &amp; Sandberg</span>
+          <span>&#9201; 129 min</span>
+          <span>&#127482;&#127480; PG-13</span>
+        </div>
+        <p class="mc-synopsis">Captain Jack Sparrow finds the winds of ill-fortune blowing when deadly ghost sailors, led by the terrifying Captain Salazar, escape from the Devil's Triangle and hunt down every pirate at sea.</p>
+        <a href="https://www.youtube.com/watch?v=4YMD8mOezts" target="_blank" class="mc-trailer-btn">&#9654; Watch Trailer</a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2 class="pirate-font">Captain Jack Sparrow</h2>
+        <p>Sailing the Seven Seas since 1700. A university web development assignment inspired by the world's greatest pirate.</p>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" class="social-btn" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:jacksparrow@blackpearl.com" class="social-btn" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="tel:+94711234567" class="social-btn" aria-label="Phone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">&#9758; Home</a></li>
+          <li><a href="about.html">&#9758; The Captain</a></li>
+          <li><a href="movies.html">&#9758; Movies</a></li>
+          <li><a href="gallery.html">&#9758; Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Contact Us</h4>
+        <ul class="footer-contact-list">
+          <li><span class="contact-icon">&#128222;</span><a href="tel:+94711234567">+94 71 123 4567</a></li>
+          <li><span class="contact-icon">&#128140;</span><a href="mailto:jacksparrow@blackpearl.com">jacksparrow@blackpearl.com</a></li>
+          <li><span class="contact-icon">&#128205;</span><span>Port Royal, Caribbean Sea</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Follow the Legend</h4>
+        <ul class="footer-list">
+          <li><a href="https://facebook.com" target="_blank">&#128283; Facebook</a></li>
+          <li><a href="https://instagram.com" target="_blank">&#128247; Instagram</a></li>
+          <li><a href="mailto:jacksparrow@blackpearl.com">&#9993; Email Us</a></li>
+        </ul>
+        <div class="footer-quote">"Not all treasure is silver and gold, mate."</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Captain Jack Sparrow Fan Site &mdash; A University Web Development Assignment</span>
+      <span class="footer-bottom-links">
+        <a href="index.html">Home</a> &bull;
+        <a href="about.html">About</a> &bull;
+        <a href="movies.html">Movies</a> &bull;
+        <a href="gallery.html">Gallery</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="premium-animations.js"></script>
+</body>
+
+</html>

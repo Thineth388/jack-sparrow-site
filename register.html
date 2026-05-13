@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Enlist in the crew of Captain Jack Sparrow by creating a new pirate account.">
+  <title>Enlist the Crew | Register Now</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-container">
+
+  <div class="auth-box reveal">
+    <h2 class="pirate-font">Enlist Now</h2>
+    <p style="margin-bottom: 10px; color: #ccc;">Choose your name and secret word to join the crew.</p>
+    
+    <div style="margin-top: 30px; text-align: left;">
+      <label style="font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; text-transform: uppercase;">New Pirate Name</label>
+      <input type="text" id="newUser" placeholder="e.g. CaptainBarbossa">
+      
+      <label style="font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; text-transform: uppercase;">Secret Phrase</label>
+      <input type="password" id="newPass" placeholder="••••••••">
+    </div>
+    
+    <button class="btn-gold" onclick="register()">Join the Cause</button>
+    
+    <p style="margin-top: 30px; font-size: 0.9rem; color: #777;">
+      Already in the crew? <a href="login.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Board the Ship</a>
+    </p>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

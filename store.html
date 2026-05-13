@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Captain's Stash | Merch Store</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chatbot.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    .store-hero {
+      text-align: center;
+      padding: 60px 8% 20px;
+    }
+    
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 40px 8% 80px;
+    }
+    
+    .product-card {
+      background: rgba(15, 15, 15, 0.9);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 20px rgba(240, 192, 64, 0.15);
+    }
+    
+    .product-img-wrap {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      background: #111;
+    }
+    
+    .product-card:hover .product-img {
+      transform: scale(1.1);
+    }
+    
+    .product-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    
+    .product-title {
+      font-family: 'Pirata One', cursive;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+    
+    .product-price {
+      font-weight: bold;
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    
+    .product-desc {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    
+    .btn-cart {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: 4px;
+    }
+    
+    .btn-cart:hover {
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 15px rgba(240, 192, 64, 0.4);
+    }
+    
+    /* Cart Modal */
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    /* Cart Sidebar & Checkout Modal Styles */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100vh;
+      background: #111;
+      border-left: 1px solid var(--primary);
+      z-index: 10001;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+    }
+    
+    .cart-sidebar.open {
+      right: 0;
+    }
+    
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      display: none;
+    }
+    
+    .cart-overlay.active {
+      display: block;
+    }
+    
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #333;
+    }
+    
+    .cart-total {
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    
+    .btn-checkout {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary);
+      color: #000;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      margin-top: 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-checkout:hover {
+      background: #fff;
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    .checkout-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: #111;
+      padding: 30px;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      z-index: 10002;
+      width: 90%;
+      max-width: 500px;
+      transition: transform 0.4s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    }
+    
+    .checkout-modal.open {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .checkout-form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      background: #222;
+      border: 1px solid #444;
+      color: white;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .checkout-form input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .flex-row {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .close-btn:hover { color: var(--accent); }
+  </style>
+</head>
+<body style="padding-top: 100px;">
+
+  <div id="loader">
+    <div class="loader-icon"></div>
+    <h2 class="pirate-font">Opening the Stash...</h2>
+  </div>
+
+  <nav id="main-nav" class="scrolled">
+    <h1 class="pirate-font">Captain's Stash</h1>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="characters.html">Characters</a></li>
+      <li><a href="store.html" class="active">Store</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-nav-action" style="position: relative;" onclick="toggleCart()">
+        Cart &#128722; <span class="cart-count" id="cart-counter">0</span>
+      </button>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="store-hero reveal">
+    <h2 class="pirate-font">The Captain's Stash</h2>
+    <p>Premium artifacts and pirate goods. Claim your treasure before it's gone!</p>
+    <div class="gold-divider"></div>
+  </div>
+
+  <section class="store-grid">
+    
+    <!-- Item 1 - Featured -->
+    <div class="product-card reveal" style="border-color: #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);">
+      <div class="product-img-wrap">
+        <img src="assets/product/Captain%20Jack's%20Magical%20Compass.jpg" alt="Jack's Compass" class="product-img" style="object-fit: cover;">
+        <div style="position: absolute; top: 10px; right: 10px; background: red; color: white; padding: 3px 10px; font-weight: bold; border-radius: 3px;">HOT</div>
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Captain Jack's Magical Compass</h3>
+        <div class="product-price">$299.99</div>
+        <p class="product-desc">The legendary compass that doesn't point north, but rather points to the thing you want most in this world.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Cursed%20Aztec%20Gold%20Coin.png" alt="Aztec Gold" class="product-img">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Cursed Aztec Gold Coin</h3>
+        <div class="product-price">$8,000.00</div>
+        <p class="product-desc">One of the 882 pieces of cursed Aztec gold from the chest of Hernan Cortes. Warning: Causes immortality.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/The%20Black%20Pearl%20(Model%20Ship).jpg" alt="Black Pearl Model" class="product-img">
+        <div style="position: absolute; top: 10px; right: 10px; background: #ffd700; color: black; padding: 3px 10px; font-weight: bold; border-radius: 3px;">LIMITED</div>
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">The Black Pearl (Model Ship)</h3>
+        <div class="product-price">$2,500.00</div>
+        <p class="product-desc">A highly detailed, handcrafted miniature model of the fastest ship in the Caribbean, complete with black sails.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Jack's%20Flintlock%20Pistol.jpg" alt="Flintlock Pistol" class="product-img" style="object-fit: cover;">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Jack's Flintlock Pistol</h3>
+        <div class="product-price">$450.00</div>
+        <p class="product-desc">A precise replica of the pistol Barbossa's mutineers left Jack with. Comes with exactly one shot.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Captain's%20Tricorne%20Hat.png" alt="Tricorne Hat" class="product-img">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Captain's Tricorne Hat</h3>
+        <div class="product-price">$85.00</div>
+        <p class="product-desc">Authentic leather tricorne hat. Perfect for dramatic entrances and protecting against the blazing Caribbean sun.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Steel%20Pirate%20Cutlass.jpg" alt="Pirate Cutlass" class="product-img">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Steel Pirate Cutlass</h3>
+        <div class="product-price">$150.00</div>
+        <p class="product-desc">A perfectly balanced blade for close-quarters combat aboard a ship. Leather-wrapped hilt and scabbard included.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Captain's%20Long%20Coat.jpg" alt="Long Coat" class="product-img">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Captain's Long Coat</h3>
+        <div class="product-price">$350.00</div>
+        <p class="product-desc">A heavy, weathered coat worthy of a captain. Features deep pockets to hide extra rum and treasure maps.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Key%20to%20the%20Dead%20Man's%20Chest.png" alt="Davy Jones Key" class="product-img" style="object-fit: cover;">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Key to the Dead Man's Chest</h3>
+        <div class="product-price">$120.00</div>
+        <p class="product-desc">The only key that opens the chest containing Davy Jones' beating heart. A dangerous artifact.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+    
+    <!-- Item 9 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Dead%20Man's%20Chest%20(Replica).jpg" alt="Dead Man's Chest" class="product-img">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Dead Man's Chest (Replica)</h3>
+        <div class="product-price">$500.00</div>
+        <p class="product-desc">A cursed chest crafted from dark iron and wood. Do not open unless you have the key. (Heart not included).</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Item 10 -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="assets/product/Jolly%20Roger%20Flag.jpg" alt="Pirate Flag" class="product-img" style="object-fit: cover;">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Jolly Roger Flag</h3>
+        <div class="product-price">$45.00</div>
+        <p class="product-desc">Hoist the colors! A large, weather-resistant pirate flag to strike fear into the hearts of merchant ships.</p>
+        <button class="btn-cart" onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2 class="pirate-font">Captain Jack Sparrow</h2>
+        <p>Sailing the Seven Seas since 1700.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">&#9758; Home</a></li>
+          <li><a href="movies.html">&#9758; Movies</a></li>
+          <li><a href="store.html">&#9758; Store</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Captain Jack Sparrow Fan Site</span>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2 class="pirate-font" style="color: var(--primary); margin:0;">Your Loot</h2>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items-container">
+      <!-- Items will be injected here -->
+      <p style="color:#aaa; text-align:center; margin-top:20px;">Yer stash is empty, matey!</p>
+    </div>
+    <div class="cart-total">
+      <span>Total:</span>
+      <span id="cart-total-price">$0.00</span>
+    </div>
+    <button class="btn-checkout" onclick="openCheckout()">Proceed to Checkout</button>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="checkout-modal" id="checkout-modal">
+    <div class="cart-header">
+      <h2 class="pirate-font" style="color: var(--primary); margin:0;">Secure Payment</h2>
+      <button class="close-btn" onclick="closeCheckout()">&times;</button>
+    </div>
+    <form class="checkout-form" onsubmit="processPayment(event)">
+      <h4 style="margin-bottom:10px; color:#ccc;">Shipping Details</h4>
+      <input type="text" placeholder="Full Name (e.g. Captain Barbossa)" required>
+      <input type="text" placeholder="Shipping Address (e.g. Port Royal, Tortuga)" required>
+      
+      <h4 style="margin-bottom:10px; margin-top:10px; color:#ccc;">Card Details</h4>
+      <input type="text" placeholder="Card Number (0000 0000 0000 0000)" required pattern="\d{16}" title="16 digit card number">
+      <div class="flex-row">
+        <input type="text" placeholder="MM/YY" required pattern="\d\d/\d\d" title="MM/YY format">
+        <input type="text" placeholder="CVC" required pattern="\d{3,4}" title="3 or 4 digit CVC">
+      </div>
+      <button type="submit" class="btn-checkout" id="pay-btn" style="margin-top: 10px;">Pay Now</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="premium-animations.js"></script>
+  <script>
+    let cart = [];
+    
+    function addToCart(btn) {
+      // Get product details
+      const card = btn.closest('.product-card');
+      const title = card.querySelector('.product-title').innerText;
+      const priceText = card.querySelector('.product-price').innerText;
+      const price = parseFloat(priceText.replace('$', '').replace(',', ''));
+      
+      cart.push({ title, price });
+      updateCartUI();
+      
+      // Button Animation
+      const originalText = btn.innerText;
+      btn.innerText = 'Added! ⚓';
+      btn.style.background = '#ffd700';
+      btn.style.color = '#000';
+      btn.style.borderColor = '#ffd700';
+      
+      gsap.fromTo("#cart-counter", 
+        { scale: 2 }, 
+        { scale: 1, duration: 0.5, ease: "bounce.out" }
+      );
+
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.background = 'transparent';
+        btn.style.color = 'var(--primary)';
+        btn.style.borderColor = 'var(--primary)';
+      }, 1500);
+    }
+    
+    function updateCartUI() {
+      document.getElementById('cart-counter').innerText = cart.length;
+      
+      const container = document.getElementById('cart-items-container');
+      const totalEl = document.getElementById('cart-total-price');
+      
+      if(cart.length === 0) {
+        container.innerHTML = '<p style="color:#aaa; text-align:center; margin-top:20px;">Yer stash is empty, matey!</p>';
+        totalEl.innerText = '$0.00';
+        return;
+      }
+      
+      container.innerHTML = '';
+      let total = 0;
+      
+      cart.forEach((item, index) => {
+        total += item.price;
+        container.innerHTML += `
+          <div class="cart-item">
+            <span style="color:#fff; font-size:0.9rem;">${item.title}</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="color:var(--primary); font-weight:bold;">$${item.price.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+              <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">&times;</button>
+            </div>
+          </div>
+        `;
+      });
+      
+      totalEl.innerText = '$' + total.toLocaleString(undefined, {minimumFractionDigits: 2});
+    }
+    
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+    
+    function toggleCart() {
+      const sidebar = document.getElementById('cart-sidebar');
+      const overlay = document.getElementById('cart-overlay');
+      
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+    
+    function openCheckout() {
+      if(cart.length === 0) {
+        alert("Ye need to add items to yer stash first!");
+        return;
+      }
+      toggleCart();
+      
+      const overlay = document.getElementById('cart-overlay');
+      const modal = document.getElementById('checkout-modal');
+      
+      overlay.classList.add('active');
+      modal.classList.add('open');
+      
+      // Update Total on Pay button
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById('pay-btn').innerText = 'Pay $' + total.toLocaleString(undefined, {minimumFractionDigits: 2});
+    }
+    
+    function closeCheckout() {
+      document.getElementById('cart-overlay').classList.remove('active');
+      document.getElementById('checkout-modal').classList.remove('open');
+    }
+    
+    function processPayment(e) {
+      e.preventDefault();
+      const btn = document.getElementById('pay-btn');
+      btn.innerText = 'Processing...';
+      btn.style.opacity = '0.7';
+      
+      setTimeout(() => {
+        btn.innerText = 'Payment Successful! 🎉';
+        btn.style.background = '#4caf50';
+        btn.style.color = 'white';
+        
+        setTimeout(() => {
+          cart = [];
+          updateCartUI();
+          closeCheckout();
+          btn.innerText = 'Pay Now';
+          btn.style.background = 'var(--primary)';
+          btn.style.color = '#000';
+          btn.style.opacity = '1';
+          e.target.reset();
+          
+          alert("Order Confirmed! Yer treasure is on its way across the Seven Seas!");
+        }, 2000);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

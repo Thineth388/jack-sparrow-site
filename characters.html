@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Characters | Pirates of the Caribbean</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chatbot.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      padding: 60px 8%;
+    }
+    
+    .char-card {
+      background: rgba(15, 15, 15, 0.8);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .char-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.8), 0 0 20px rgba(240, 192, 64, 0.2);
+    }
+    
+    .char-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin-bottom: 20px;
+      transition: transform 0.5s ease;
+      box-shadow: 0 0 15px rgba(240, 192, 64, 0.3);
+    }
+    
+    .char-card:hover .char-img {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .char-name {
+      font-family: 'Pirata One', cursive;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    
+    .char-role {
+      color: #aaa;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+    
+    .char-desc {
+      font-size: 0.95rem;
+      color: #ddd;
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .char-quote {
+      margin-top: 15px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--primary-light);
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body style="padding-top: 100px;">
+
+  <div id="loader">
+    <div class="loader-icon"></div>
+    <h2 class="pirate-font">Summoning Legends...</h2>
+  </div>
+
+  <nav id="main-nav" class="scrolled">
+    <h1 class="pirate-font">Characters</h1>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="characters.html" class="active">Characters</a></li>
+      <li><a href="store.html">Store</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="movies-hero reveal">
+    <h2 class="pirate-font">Legends of the Sea</h2>
+    <p>Discover the most notorious pirates, cursed captains, and brave souls of the Caribbean.</p>
+    <div class="gold-divider"></div>
+  </div>
+
+  <section class="character-grid">
+    
+    <!-- Character 1 -->
+    <div class="char-card reveal">
+      <img src="assets/character/Captain%20Jack%20Sparrow.jpg" alt="Jack Sparrow" class="char-img">
+      <h3 class="char-name">Captain Jack Sparrow</h3>
+      <div class="char-role">Captain of the Black Pearl</div>
+      <p class="char-desc">A legendary pirate of the Seven Seas, and the irreverent trickster of the Caribbean. A master of self-promotion and self-interest.</p>
+      <div class="char-quote">"But you have heard of me."</div>
+    </div>
+
+    <!-- Character 2 -->
+    <div class="char-card reveal">
+      <img src="assets/character/Hector%20Barbossa.jpg" alt="Hector Barbossa" class="char-img">
+      <h3 class="char-name">Hector Barbossa</h3>
+      <div class="char-role">Pirate Lord of the Caspian Sea</div>
+      <p class="char-desc">A mutinous first mate turned cursed captain. Barbossa is a ruthless and cunning survivor who will do anything to maintain his freedom.</p>
+      <div class="char-quote">"The code is more what you'd call 'guidelines' than actual rules."</div>
+    </div>
+
+    <!-- Character 3 -->
+    <div class="char-card reveal">
+      <img src="assets/character/Will%20Turner.jpg" alt="Will Turner" class="char-img">
+      <h3 class="char-name">Will Turner</h3>
+      <div class="char-role">Captain of the Flying Dutchman</div>
+      <p class="char-desc">A blacksmith apprentice who discovers his pirate heritage. Driven by love and honor, he becomes one of the most formidable swordsmen.</p>
+      <div class="char-quote">"No matter what happens, I will free you."</div>
+    </div>
+
+    <!-- Character 4 -->
+    <div class="char-card reveal">
+      <img src="assets/character/Elizabeth%20Swann.jpeg" alt="Elizabeth Swann" class="char-img">
+      <h3 class="char-name">Elizabeth Swann</h3>
+      <div class="char-role">Pirate King</div>
+      <p class="char-desc">A governor's daughter who traded her corsets for a cutlass. She evolves from a damsel in distress to the fierce Pirate King of the Brethren Court.</p>
+      <div class="char-quote">"This is madness!"</div>
+    </div>
+
+    <!-- Character 5 -->
+    <div class="char-card reveal">
+      <img src="assets/character/Davy%20Jones.jpg" alt="Davy Jones" class="char-img">
+      <h3 class="char-name">Davy Jones</h3>
+      <div class="char-role">Ruler of the Seven Seas</div>
+      <p class="char-desc">The monstrous captain of the Flying Dutchman. Tasked with ferrying souls to the afterlife, a broken heart turned him into a cruel tyrant.</p>
+      <div class="char-quote">"Do you fear death?"</div>
+    </div>
+
+    <!-- Character 6 -->
+    <div class="char-card reveal">
+      <img src="assets/character/Joshamee%20Gibbs.jpeg" alt="Joshamee Gibbs" class="char-img">
+      <h3 class="char-name">Joshamee Gibbs</h3>
+      <div class="char-role">First Mate</div>
+      <p class="char-desc">Jack Sparrow's most loyal companion and right-hand man. A superstitious sailor with a deep knowledge of sea lore and legends.</p>
+      <div class="char-quote">"Take what you can, give nothing back!"</div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2 class="pirate-font">Captain Jack Sparrow</h2>
+        <p>Sailing the Seven Seas since 1700. A university web development assignment inspired by the world's greatest pirate.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="pirate-font footer-col-title">Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">&#9758; Home</a></li>
+          <li><a href="about.html">&#9758; The Captain</a></li>
+          <li><a href="movies.html">&#9758; Movies</a></li>
+          <li><a href="characters.html">&#9758; Characters</a></li>
+          <li><a href="store.html">&#9758; Store</a></li>
+          <li><a href="gallery.html">&#9758; Gallery</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Captain Jack Sparrow Fan Site</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="premium-animations.js"></script>
+</body>
+</html>

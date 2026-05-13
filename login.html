@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gather your crew and set sail by logging into the Jack Sparrow Fan Site.">
+  <title>Gather Your Crew | Piratical Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-container">
+
+  <div class="auth-box reveal">
+    <h2 class="pirate-font">Gather Your Crew</h2>
+    <p style="margin-bottom: 10px; color: #ccc;">Enter your credentials to set sail once more.</p>
+    
+    <div style="margin-top: 30px; text-align: left;">
+      <label style="font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; text-transform: uppercase;">Pirate Name</label>
+      <input type="text" id="username" placeholder="e.g. JackSparrow">
+      
+      <label style="font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; text-transform: uppercase;">Secret Phrase</label>
+      <input type="password" id="password" placeholder="••••••••">
+    </div>
+    
+    <button class="btn-gold" onclick="login()">Enter the Legend</button>
+    
+    <p style="margin-top: 30px; font-size: 0.9rem; color: #777;">
+      No crew? <a href="register.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Enlist in the Navy</a>
+    </p>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
