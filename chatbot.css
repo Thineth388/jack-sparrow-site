@@ -291,3 +291,20 @@
     transform: scale(1);
   }
 }
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .chat-window {
+    width: calc(100vw - 40px);
+    right: 20px;
+    bottom: 85px;
+    height: 400px;
+  }
+  .chat-toggle-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    bottom: 20px;
+    right: 20px;
+  }
+}

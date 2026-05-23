@@ -1224,4 +1224,11 @@ footer {
   .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
   .form-row { grid-template-columns: 1fr; }
   .contact-section { padding: 60px 6%; }
+  
+  /* Photo Gallery & Movies Fixes for Mobile */
+  .scroll-to-top { right: 80px; bottom: 20px; width: 40px; height: 40px; }
+  .gallery-masonry { display: grid; grid-template-columns: 1fr; gap: 15px; padding: 20px 5% 50px; }
+  .movie-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 20px 5% 50px; }
+  .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 300px; }
+  .movie-card { height: 450px; }
 }
