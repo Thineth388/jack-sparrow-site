@@ -263,6 +263,13 @@
       cursor: pointer;
     }
     .close-btn:hover { color: var(--accent); }
+    
+    @media (max-width: 768px) {
+      .btn-nav-action { display: inline-block !important; padding: 8px 12px; font-size: 0.9rem; margin-top: 10px; }
+      .cart-sidebar { width: 100vw; right: -100vw; }
+      .cart-sidebar.open { right: 0; }
+      .nav-right { flex-direction: column; align-items: flex-end; gap: 5px; }
+    }
   </style>
 </head>
 <body style="padding-top: 100px;">
