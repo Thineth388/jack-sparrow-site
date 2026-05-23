@@ -211,7 +211,7 @@ nav ul li a.active {
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  right: 110px; /* Moved to avoid overlapping with chatbot */
   background: rgba(10, 10, 10, 0.8);
   border: 1px solid var(--primary);
   color: var(--primary);
